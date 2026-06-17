@@ -1,0 +1,17 @@
+name,role,department,email,phone
+Dana Whitfield,Executive Producer,production,dana.whitfield@example.com,555-0101
+Marcus Okafor,Producer,production,marcus.okafor@example.com,555-0102
+Priya Raman,Production Assistant,production,priya.raman@example.com,555-0103
+Elliot Vance,Director,production,elliot.vance@example.com,555-0104
+Sofia Marchetti,Technical Director,engineering,sofia.marchetti@example.com,555-0105
+Ray Donnelly,Engineer in Charge,engineering,ray.donnelly@example.com,555-0106
+Lena Brooks,A1,audio,lena.brooks@example.com,555-0107
+Theo Park,A2,audio,theo.park@example.com,555-0108
+Camille Duarte,V1,video,camille.duarte@example.com,555-0109
+Jonas Feld,Camera Operator,camera,jonas.feld@example.com,555-0110
+Ana Reyes,Camera Operator,camera,ana.reyes@example.com,555-0111
+Kenji Watanabe,Camera Operator,camera,kenji.watanabe@example.com,555-0112
+Mireille Fontaine,Camera Utility,camera,mireille.fontaine@example.com,555-0113
+Gus Halloran,Stage Manager,stage,gus.halloran@example.com,555-0114
+Tasha Nwosu,Utility,video,tasha.nwosu@example.com,555-0115
+Owen McBride,Comms Tech,engineering,owen.mcbride@example.com,555-0116

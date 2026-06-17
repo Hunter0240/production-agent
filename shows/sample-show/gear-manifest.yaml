@@ -1,0 +1,58 @@
+# Equipment manifest by department.
+# Quantities are show totals including spares.
+
+camera:
+  - item: Sony HDC-3500 camera chain
+    quantity: 4
+  - item: Sony HDC-P50 POV/jib camera
+    quantity: 1
+  - item: Panasonic AW-UE160 robotic PTZ
+    quantity: 1
+  - item: Canon CJ45ex9.7B box lens
+    quantity: 1
+  - item: Canon CJ27ex7.3B box lens
+    quantity: 2
+  - item: Canon CJ14ex4.3B ENG lens
+    quantity: 1
+  - item: Canon CJ20ex5B ENG lens
+    quantity: 1
+  - item: Stanton Jimmy Jib Triangle, 24 ft
+    quantity: 1
+  - item: Vinten Vector 750 head and sled package
+    quantity: 3
+  - item: Camera RF transmitter pack
+    quantity: 2
+audio:
+  - item: Calrec Brio 36 console
+    quantity: 1
+  - item: 48x16 transformer-isolated split
+    quantity: 1
+  - item: Shure Axient Digital RF channel
+    quantity: 8
+  - item: Shotgun mic (lip coverage)
+    quantity: 4
+  - item: House hang mic pair
+    quantity: 1
+engineering:
+  - item: Clear-Com FreeSpeak II base station
+    quantity: 1
+  - item: FreeSpeak II wireless beltpack
+    quantity: 12
+  - item: Wired PL panel
+    quantity: 4
+  - item: EVS replay channel
+    quantity: 2
+  - item: Fiber camera trunk, 300 ft
+    quantity: 6
+video:
+  - item: Shading RCP panel
+    quantity: 6
+  - item: Reference monitor, shading bay
+    quantity: 3
+stage:
+  - item: Deck riser, 4x8
+    quantity: 10
+  - item: Cable ramp, 3 ft section
+    quantity: 24
+  - item: Followspot, long-throw
+    quantity: 2

@@ -1,0 +1,992 @@
+:root {
+  --ink: #0d0f11;
+  --panel: #14171a;
+  --panel-2: #191d21;
+  --rail: #101316;
+  --hairline: #2a3036;
+  --hairline-bright: #3a424a;
+  --text: #d6dade;
+  --text-dim: #8a929a;
+  /* faint carries real content (doc descriptions, table/field labels, legal,
+     placeholder); lifted from #5a626a (~3.0:1, below the AA body floor) to
+     ~4.75:1 on --panel while staying a tier below --text-dim. */
+  --text-faint: #7e858d;
+  --tally-red: #e6483b;
+  --tally-green: #3ddc84;
+  --amber: #f0a832;
+  /* comparison-lane accent: a cool monitor cyan that reads as a second feed
+     against the warm amber primary, distinct from the green/red tallies. */
+  --signal: #4fc3dc;
+  --display: "Barlow Condensed", sans-serif;
+  --mono: "IBM Plex Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: var(--ink);
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 3px,
+    rgba(255, 255, 255, 0.012) 3px,
+    rgba(255, 255, 255, 0.012) 4px
+  );
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.frame {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* masthead */
+
+.masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 4px 12px;
+  border-bottom: 2px solid var(--hairline-bright);
+}
+
+.masthead-id {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.wordmark {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: 0.06em;
+  color: #fff;
+}
+
+.wordmark em {
+  font-style: normal;
+  color: var(--ink);
+  background: var(--amber);
+  padding: 0 7px;
+  margin-left: 6px;
+  border-radius: 2px;
+}
+
+.show-slug {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--text-faint);
+}
+
+.masthead-controls {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.role-pin {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--hairline-bright);
+  padding: 6px 10px;
+  background: var(--panel);
+}
+
+.role-pin-label {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--text-dim);
+}
+
+.role-pin select {
+  background: transparent;
+  color: var(--amber);
+  border: none;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  outline: none;
+}
+
+.role-pin select option {
+  background: var(--panel);
+  color: var(--text);
+}
+
+/* stage */
+
+.stage {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(420px, 5fr) minmax(380px, 4fr);
+  gap: 14px;
+  padding: 14px 0;
+  min-height: 0;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--hairline);
+  display: flex;
+  min-height: 0;
+}
+
+.panel-title {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  color: #fff;
+}
+
+.panel-sub {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--text-faint);
+}
+
+/* docs panel */
+
+.docs {
+  overflow: hidden;
+}
+
+.panel-rail {
+  width: 220px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--hairline);
+  background: var(--rail);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+}
+
+.rail-notice {
+  font-size: 11px;
+  color: var(--text-faint);
+  padding-top: 8px;
+}
+
+.doc-list {
+  list-style: none;
+  padding: 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.doc-item {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 1px solid transparent;
+  border-left: 2px solid var(--hairline);
+  color: var(--text);
+  font-family: var(--mono);
+  padding: 7px 9px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: border-color 0.12s, background 0.12s;
+}
+
+.doc-item:hover {
+  background: var(--panel-2);
+  border-left-color: var(--amber);
+}
+
+.doc-item.active {
+  background: var(--panel-2);
+  border-left-color: var(--amber);
+  border-color: var(--hairline);
+  border-left-width: 2px;
+}
+
+.doc-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.doc-desc {
+  font-size: 10px;
+  color: var(--text-faint);
+  line-height: 1.4;
+}
+
+.panel-body {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+}
+
+.doc-view {
+  padding: 14px 16px;
+}
+
+.doc-content {
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--text);
+}
+
+.doc-empty,
+.doc-denied {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  padding: 24px;
+}
+
+.doc-empty p:first-child {
+  font-family: var(--display);
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  color: var(--text-faint);
+}
+
+.doc-empty-sub {
+  max-width: 360px;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.denied-stamp {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.18em;
+  color: var(--tally-red);
+  border: 2px solid var(--tally-red);
+  padding: 4px 14px;
+  transform: rotate(-3deg);
+}
+
+.doc-denied p {
+  max-width: 380px;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* comms panel */
+
+.comms {
+  flex-direction: column;
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.panel-head-id {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.comms-log {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* a query container so compare lanes go side-by-side only when the log is
+     actually wide enough, independent of viewport. */
+  container-type: inline-size;
+}
+
+.comms-empty {
+  margin: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 420px;
+  color: var(--text-dim);
+  font-size: 12px;
+}
+
+.comms-empty-head {
+  font-family: var(--display);
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  color: var(--text-faint);
+}
+
+/* a footnote legend teaching that a denial is a boundary, not a failure */
+.comms-empty-note {
+  font-size: 11px;
+  color: var(--text-faint);
+  border-top: 1px solid var(--hairline);
+  padding-top: 10px;
+  margin-top: 2px;
+}
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  padding-top: 6px;
+}
+
+.suggestions button {
+  background: var(--panel-2);
+  border: 1px solid var(--hairline-bright);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: border-color 0.12s, color 0.12s;
+}
+
+.suggestions button:hover:not(:disabled) {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+.suggestions button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* persistent quick-ask bar: keeps the common queries one tap away once the
+   transcript is non-empty, so a crew member under time pressure re-taps
+   instead of re-typing. A single scrollable row, never a growing wrap. */
+.quickask {
+  display: flex;
+  gap: 6px;
+  padding: 8px 10px;
+  border-top: 1px solid var(--hairline);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.quickask-chip {
+  flex: 0 0 auto;
+  background: var(--panel-2);
+  border: 1px solid var(--hairline-bright);
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 11px;
+  white-space: nowrap;
+  padding: 5px 9px;
+  cursor: pointer;
+  transition: border-color 0.12s, color 0.12s;
+}
+
+.quickask-chip:hover:not(:disabled) {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+.quickask-chip:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.line-user,
+.line-assistant {
+  display: grid;
+  grid-template-columns: 86px 1fr;
+  gap: 10px;
+  align-items: start;
+}
+
+.line-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  padding: 2px 0;
+  text-align: right;
+  color: var(--text-faint);
+}
+
+.line-user .line-tag {
+  color: var(--amber);
+}
+
+.line-assistant .line-tag {
+  color: var(--tally-green);
+}
+
+.line-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  min-width: 0;
+}
+
+.line-user p,
+.line-assistant p {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 12.5px;
+}
+
+/* copy-answer: subtle by default, brightens on hover/focus. Always rendered
+   (not hover-only) so it works for touch and keyboard. */
+.line-copy {
+  background: none;
+  border: none;
+  padding: 1px 0;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: var(--text-faint);
+  cursor: pointer;
+  transition: color 0.12s;
+}
+
+.line-copy:hover {
+  color: var(--amber);
+}
+
+.line-user p {
+  color: var(--text-dim);
+}
+
+.line-tool {
+  padding-left: 96px;
+  font-size: 10.5px;
+  color: var(--text-faint);
+  overflow-wrap: anywhere;
+}
+
+.line-notice {
+  margin: 0 auto;
+  font-size: 11px;
+  color: var(--amber);
+  border: 1px dashed var(--hairline-bright);
+  padding: 6px 12px;
+  max-width: 90%;
+  text-align: center;
+}
+
+/* errors read as failures, distinct from neutral system notices like a
+   role-change boundary divider. */
+.line-notice-error {
+  color: var(--tally-red);
+  border-color: var(--tally-red);
+}
+
+.comms-input {
+  display: flex;
+  border-top: 1px solid var(--hairline);
+}
+
+.comms-input input {
+  flex: 1;
+  background: var(--rail);
+  border: none;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 13px 14px;
+  outline: none;
+}
+
+.comms-input input::placeholder {
+  color: var(--text-faint);
+}
+
+.comms-input button {
+  background: var(--amber);
+  color: var(--ink);
+  border: none;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  padding: 0 22px;
+  cursor: pointer;
+}
+
+.comms-input button:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.comms-input button:active:not(:disabled) {
+  filter: brightness(0.92);
+}
+
+.comms-input button:disabled {
+  background: var(--hairline-bright);
+  color: var(--text-faint);
+  cursor: default;
+}
+
+/* STOP reads as an abort, not the primary action: outlined, not filled. */
+.comms-stop {
+  background: transparent;
+  color: var(--tally-red);
+  box-shadow: inset 0 0 0 1px var(--tally-red);
+}
+
+/* accessibility: visible keyboard focus (WCAG 2.1 AA 2.4.7).
+   :focus-visible keeps the ring off mouse clicks but restores it for
+   keyboard/switch users on every interactive control. The base controls
+   set outline:none for the mouse path; these rules win on keyboard focus. */
+.role-pin select:focus-visible,
+.comms-input input:focus-visible,
+.comms-input button:focus-visible,
+.suggestions button:focus-visible,
+.quickask-chip:focus-visible,
+.line-copy:focus-visible,
+.doc-item:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+/* inline permission stamp: the redaction made visible. Shares the rotated,
+   condensed, red-ruled DNA of the full ACCESS DENIED stamp, sized for a line. */
+.stamp-mini {
+  flex-shrink: 0;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--tally-red);
+  border: 1px solid var(--tally-red);
+  padding: 1px 6px;
+  transform: rotate(-2deg);
+}
+
+.line-denied {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 96px;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* role comparison: two scoped feeds, side-by-side when the log is wide. */
+.compare {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.compare-q {
+  display: grid;
+  grid-template-columns: 86px 1fr;
+  gap: 10px;
+  align-items: start;
+}
+
+.compare-q .line-tag {
+  color: var(--signal);
+}
+
+.compare-q p {
+  font-size: 12.5px;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.compare-lanes {
+  display: grid;
+  gap: 10px;
+}
+
+@container (min-width: 520px) {
+  .compare-lanes {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.lane {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--panel-2);
+  border: 1px solid var(--hairline);
+}
+
+/* a tally bar above each feed: position plus color separate the two lanes,
+   so the distinction never rests on color alone. */
+.lane-primary {
+  border-top: 2px solid var(--amber);
+}
+
+.lane-vs {
+  border-top: 2px solid var(--signal);
+}
+
+.lane-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 9px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.lane-role {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+}
+
+.lane-primary .lane-role {
+  color: var(--amber);
+}
+
+.lane-vs .lane-role {
+  color: var(--signal);
+}
+
+.lane-body {
+  padding: 4px 0 8px;
+}
+
+.lane-tool {
+  padding: 4px 9px 0;
+  font-size: 10.5px;
+  color: var(--text-faint);
+  overflow-wrap: anywhere;
+}
+
+.lane-text,
+.lane-error {
+  padding: 8px 9px 0;
+  font-size: 12px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.lane-text {
+  color: var(--text);
+}
+
+.lane-error {
+  color: var(--tally-red);
+}
+
+/* footer */
+
+.legal {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 4px 14px;
+  border-top: 1px solid var(--hairline);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: var(--text-faint);
+}
+
+.legal a {
+  color: var(--text-dim);
+  text-decoration: none;
+}
+
+.legal a:hover {
+  color: var(--amber);
+}
+
+.dead-air {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 0.3em;
+  color: var(--tally-red);
+}
+
+.dead-air-retry {
+  background: transparent;
+  border: 1px solid var(--hairline-bright);
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  padding: 8px 18px;
+  cursor: pointer;
+  transition: border-color 0.12s, color 0.12s;
+}
+
+.dead-air-retry:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+.dead-air-retry:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+  .stage {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .panel-rail {
+    width: 170px;
+  }
+}
+
+/* Formatted production paperwork */
+.pw {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.55;
+}
+
+.pw-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+  border-bottom: 2px solid var(--hairline-bright);
+}
+
+.pw-head h3 {
+  font-family: var(--display);
+  font-size: 20px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.pw-head span {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.pw-section {
+  margin-bottom: 16px;
+}
+
+.pw-section h4 {
+  font-family: var(--display);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 6px;
+}
+
+.pw-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.pw-line {
+  margin: 2px 0;
+}
+
+.pw-dim {
+  color: var(--text-dim);
+}
+
+.pw-key {
+  display: inline-block;
+  min-width: 72px;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+.pw-fields {
+  display: grid;
+  gap: 6px;
+}
+
+.pw-fields div {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 10px;
+}
+
+.pw-fields dt {
+  color: var(--text-faint);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding-top: 1px;
+}
+
+.pw-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pw-table th {
+  text-align: left;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  border-bottom: 1px solid var(--hairline-bright);
+  padding: 4px 8px 4px 0;
+}
+
+.pw-table td {
+  vertical-align: top;
+  padding: 5px 8px 5px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.pw-strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.pw-clock {
+  color: var(--amber);
+  white-space: nowrap;
+}
+
+.pw-item {
+  color: var(--text-faint);
+}
+
+.pw-rundown .pw-notes {
+  display: block;
+  color: var(--text-dim);
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+.pw-safety h4 {
+  color: var(--tally-red);
+}
+
+.pw-card {
+  border: 1px solid var(--hairline);
+  border-left: 2px solid var(--amber);
+  background: var(--panel-2);
+  padding: 8px 10px;
+  margin-bottom: 8px;
+}
+
+.pw-card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.pw-card-head strong {
+  color: #fff;
+}
+
+.pw-badge {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--amber);
+  padding: 1px 6px;
+  border-radius: 2px;
+}
+
+.pw-md h1,
+.pw-md h2 {
+  font-family: var(--display);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 14px 0 6px;
+}
+
+.pw-md h1 {
+  font-size: 18px;
+}
+
+.pw-md h2 {
+  font-size: 14px;
+  color: var(--amber);
+}
+
+.pw-md ul {
+  padding-left: 18px;
+  margin: 6px 0;
+}
+
+.pw-md li {
+  margin: 2px 0;
+}
+
+.pw-md table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0;
+}
+
+.pw-md th,
+.pw-md td {
+  text-align: left;
+  padding: 4px 8px 4px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.pw-md th {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  border-bottom: 1px solid var(--hairline-bright);
+}
+
+.pw-md code {
+  font-family: var(--mono);
+  color: var(--amber);
+}

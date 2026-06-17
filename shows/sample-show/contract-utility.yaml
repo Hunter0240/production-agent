@@ -1,0 +1,18 @@
+# Engagement agreement. Personal access: utility and producer line only.
+role: Utility
+holder: Tasha Nwosu
+department: Video
+agreement:
+  type: Day rate
+  rate: "$425 / 10-hour day"
+  days_guaranteed: 1
+  overtime: 1.5x after 10h, 2x after 12h
+  kit_fee: None
+dates:
+  prep: 2026-08-22
+  show: 2026-08-22
+terms:
+  - Payment net 30 from invoice receipt.
+  - Meal penalty after 6 hours per standard schedule.
+  - Cancellation: half day if cancelled inside 24 hours.
+status: Countersigned

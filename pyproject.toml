@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pagent"
+version = "0.1.0"
+description = "AI agent for the live-broadcast production office: a production-docs MCP server with permission-aware retrieval over a show's paperwork."
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "Cory Hunter", email = "cahunter21@gmail.com" }]
+requires-python = ">=3.11"
+dependencies = [
+    "mcp>=1.0",
+    "pyyaml>=6.0",
+]
+keywords = ["mcp", "broadcast", "production", "retrieval"]
+classifiers = [
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Multimedia :: Video",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+pagent = "pagent.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

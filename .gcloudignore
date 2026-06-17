@@ -1,0 +1,27 @@
+# What `gcloud run deploy --source .` uploads to Cloud Build. Present, this file
+# replaces .gitignore for upload, so it must list the standard build artifacts
+# AND the harness/lattice dev tooling that is no part of the product or its image.
+
+# build/runtime artifacts
+.git
+.venv
+**/node_modules
+web/server/dist
+web/client/dist
+.pytest_cache
+**/__pycache__
+
+# harness + lattice dev tooling -- never part of the product build
+.claude
+lattice
+content
+bin
+research
+GOVERNANCE.md
+CLAUDE.md
+.core-manifest.json
+scout.yaml
+.impeccable
+.agents
+.cursor
+pagent_phase1_post.txt

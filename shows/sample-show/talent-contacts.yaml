@@ -1,0 +1,52 @@
+# RESTRICTED: producer-line roles only.
+# Talent representation and handler contacts. All entries fictional.
+
+talent:
+  - name: Mara Velasco
+    billing: Headliner
+    agent:
+      name: Felix Grandin
+      agency: Northgate Artists Group
+      email: felix.grandin@example.com
+      phone: 555-0190
+    handler:
+      name: June Castellanos
+      email: june.castellanos@example.com
+      phone: 555-0191
+    notes: Arrives 15:30 via dock entrance; no press before the show.
+  - name: The Tidewater Strings
+    billing: Opening act
+    agent:
+      name: Harriet Boyle
+      agency: Coastline Talent Partners
+      email: harriet.boyle@example.com
+      phone: 555-0192
+    handler:
+      name: Desmond Ito
+      email: desmond.ito@example.com
+      phone: 555-0193
+    notes: Ensemble of 12; green room B; soundcheck slot 13:30.
+  - name: Avery Quill
+    billing: Host
+    agent:
+      name: Renata Solis
+      agency: Brightline Management
+      email: renata.solis@example.com
+      phone: 555-0194
+    handler:
+      name: Renata Solis
+      email: renata.solis@example.com
+      phone: 555-0194
+    notes: Wants rundown changes flagged directly to handler by 17:00.
+  - name: Meridian Youth Orchestra
+    billing: Featured ensemble
+    agent:
+      name: Carl Embry
+      agency: Harbor Lights Children's Music Fund (internal)
+      email: carl.embry@example.com
+      phone: 555-0195
+    handler:
+      name: Carl Embry
+      email: carl.embry@example.com
+      phone: 555-0195
+    notes: 30 minors on site; chaperone ratio per fund policy; clear of stage by 20:30.

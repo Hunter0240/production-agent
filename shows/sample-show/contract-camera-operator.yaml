@@ -1,0 +1,19 @@
+# Engagement agreement. Personal access: camera operators and producer line only.
+# Role-scoped deal memo; per-worker agreements split from this in a later phase.
+role: Camera Operator
+holder: Camera operators (Feld, Reyes, Watanabe)
+department: Camera
+agreement:
+  type: Day rate with guarantee
+  rate: "$650 / 10-hour day"
+  days_guaranteed: 1
+  overtime: 1.5x after 10h, 2x after 12h
+  kit_fee: "$75 / day"
+dates:
+  prep: 2026-08-22
+  show: 2026-08-22
+terms:
+  - Payment net 30 from invoice receipt.
+  - Meal penalty after 6 hours per standard schedule.
+  - Cancellation: full guarantee if cancelled inside 48 hours.
+status: Countersigned

@@ -1,0 +1,18 @@
+# Engagement agreement. Personal access: the production manager and producer line only.
+role: Production Manager
+holder: Harriet Calloway
+department: Production
+agreement:
+  type: Flat, show week
+  rate: "$2,800 / show week"
+  prep_days_included: 3
+  overtime: Not applicable (flat)
+  kit_fee: None
+dates:
+  prep: 2026-08-19
+  show: 2026-08-22
+terms:
+  - Payment net 30 from invoice receipt.
+  - Owns crew booking, call sheets, and distribution.
+  - Cancellation: full week if cancelled inside 7 days.
+status: Countersigned

@@ -1,0 +1,29 @@
+# Build context for the product image. The Dockerfile only copies web/, src/,
+# shows/, pyproject.toml, README.md, and LICENSE; everything else is excluded so
+# the harness/lattice dev tooling never bloats the context or leaks into the image.
+
+# build/runtime artifacts
+.git
+.venv
+**/node_modules
+web/server/dist
+web/client/dist
+tests
+.pytest_cache
+**/__pycache__
+Dockerfile
+
+# harness + lattice dev tooling -- not part of the product
+.claude
+lattice
+content
+bin
+research
+GOVERNANCE.md
+CLAUDE.md
+.core-manifest.json
+scout.yaml
+.impeccable
+.agents
+.cursor
+pagent_phase1_post.txt

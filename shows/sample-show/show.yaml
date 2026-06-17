@@ -1,0 +1,81 @@
+# Show metadata and document manifest for the sample show.
+# All people, companies, and contact details in this bundle are fictional.
+
+name: Harbor Lights Benefit Concert
+client: Harbor Lights Children's Music Fund
+date: 2026-08-22
+venue: Meridian Theatre, San Pedro, CA
+air_window:
+  start: "19:00"
+  end: "21:00"
+  timezone: America/Los_Angeles
+  timezone_label: PT
+format: 2-hour live multi-camera concert broadcast
+distribution: Regional broadcast and streaming simulcast
+
+# Document manifest: every doc in this bundle, its access tier, and a
+# one-line description. Access tiers (see src/pagent/permissions.py):
+#   common     -- visible to all known crew roles
+#   heads      -- department heads and producer-line roles
+#   production -- producer-line roles only
+#   personal   -- the owning `role` plus the producer line, who administer them
+documents:
+  show.yaml:
+    access: common
+    description: Show metadata, air window, and the document manifest.
+  rundown.yaml:
+    access: common
+    description: Segment-by-segment rundown with timings and camera notes.
+  callsheet.yaml:
+    access: common
+    description: Per-department call times, location, parking, and meals.
+  tech-specs.md:
+    access: common
+    description: Camera plan, audio plan, and comms plan.
+  venue.md:
+    access: common
+    description: Load-in notes, power, RF coordination, and safety.
+  gear-manifest.yaml:
+    access: common
+    description: Equipment list by department with quantities.
+  crew.csv:
+    access: common
+    description: Full crew contact sheet with email and phone.
+  talent-contacts.yaml:
+    access: production
+    description: Talent entries with agent and handler contacts.
+  budget.yaml:
+    access: heads
+    description: Production budget by department with contingency.
+  contract-producer.yaml:
+    access: personal
+    role: producer
+    description: Engagement agreement for the producer.
+  contract-production-manager.yaml:
+    access: personal
+    role: production manager
+    description: Engagement agreement for the production manager.
+  contract-technical-director.yaml:
+    access: personal
+    role: technical director
+    description: Engagement agreement for the technical director.
+  contract-stage-manager.yaml:
+    access: personal
+    role: stage manager
+    description: Engagement agreement for the stage manager.
+  contract-a1.yaml:
+    access: personal
+    role: a1
+    description: Engagement agreement for the A1.
+  contract-camera-operator.yaml:
+    access: personal
+    role: camera operator
+    description: Engagement agreement for the camera operators.
+  contract-a2.yaml:
+    access: personal
+    role: a2
+    description: Engagement agreement for the A2.
+  contract-utility.yaml:
+    access: personal
+    role: utility
+    description: Engagement agreement for utility.

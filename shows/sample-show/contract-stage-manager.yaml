@@ -1,0 +1,18 @@
+# Engagement agreement. Personal access: the stage manager and producer line only.
+role: Stage Manager
+holder: Gus Halloran
+department: Stage
+agreement:
+  type: Day rate with guarantee
+  rate: "$750 / 10-hour day"
+  days_guaranteed: 2
+  overtime: 1.5x after 10h, 2x after 12h
+  kit_fee: "$40 / day (comms beltpack)"
+dates:
+  prep: 2026-08-21
+  show: 2026-08-22
+terms:
+  - Payment net 30 from invoice receipt.
+  - Meal penalty after 6 hours per standard schedule.
+  - Cancellation: full guarantee if cancelled inside 48 hours.
+status: Countersigned

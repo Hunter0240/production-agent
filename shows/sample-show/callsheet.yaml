@@ -1,0 +1,43 @@
+# Call sheet for show day, 2026-08-22.
+# All times local (America/Los_Angeles), shown as PT.
+
+date: 2026-08-22
+timezone: PT
+location:
+  venue: Meridian Theatre
+  address: 412 Beacon Street, San Pedro, CA 90731
+  truck_dock: South alley off 5th Street, dock height, one truck position
+nearest_hospital:
+  name: Providence Little Company of Mary Medical Center San Pedro
+  address: 1300 W 7th Street, San Pedro, CA 90732
+  phone: 310-832-3311
+  distance: 1.2 miles, 5 min from venue
+parking:
+  crew: Structure at 6th and Centre, vouchers at security desk
+  trucks: South alley, marshal on site from 05:30
+meals:
+  breakfast: "07:00 - catering tent, dock level"
+  lunch: "12:30 - green room annex"
+  dinner: "17:00 - green room annex, show-ready by 18:15"
+departments:
+  - department: production
+    call: "07:00"
+    note: Production office opens; rundown review at 08:00.
+  - department: engineering
+    call: "06:00"
+    note: Truck power-up, facilities check, fax to uplink by 10:00.
+  - department: camera
+    call: "09:00"
+    note: Build and bench check, FAX at 13:00, blocking rehearsal 14:00.
+  - department: audio
+    call: "08:00"
+    note: Stage splits and RF coordination before band soundcheck at 13:30.
+  - department: video
+    call: "08:30"
+    note: Shading bay setup; match cameras during FAX.
+  - department: stage
+    call: "06:30"
+    note: Load-in continues; deck ready for camera build by 09:00.
+on_air: "19:00"
+off_air: "21:00"
+wrap_estimate: "23:30"

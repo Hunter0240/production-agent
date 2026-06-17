@@ -1,0 +1,69 @@
+# Rundown for the Harbor Lights Benefit Concert broadcast.
+# Item numbers leave gaps so segments can be inserted without renumbering.
+# Segment start times (front times) are computed from `start` plus the
+# cumulative duration of preceding segments; all times are local (PT).
+
+start: "19:00"
+timezone: PT
+
+segments:
+  - item: 100
+    title: Pre-show open / network ID
+    duration: "01:30"
+    talent: ""
+    camera_notes: Cam 5 jib sweep over house to stage; Cam 1 wide hero shot for ID bug.
+  - item: 110
+    title: Host welcome and fund mission
+    duration: "03:00"
+    talent: Avery Quill
+    camera_notes: Cam 2 single on host at center mark; Cam 4 handheld low cross-shot; cut wide on applause.
+  - item: 120
+    title: Opening act - The Tidewater Strings
+    duration: "12:00"
+    talent: The Tidewater Strings
+    camera_notes: Cam 1 master wide; Cam 3 tight on first chair; Cam 5 jib slow push on final chorus.
+  - item: 130
+    title: Founder interview package (VT)
+    duration: "04:30"
+    talent: ""
+    camera_notes: Playback from EVS; Cam 4 standby on host for back-cut.
+  - item: 140
+    title: Headliner set one - Mara Velasco
+    duration: "18:00"
+    talent: Mara Velasco
+    camera_notes: Cam 4 handheld pit coverage; Cam 6 robo drum POV; watch upstage LED flare on Cam 3.
+  - item: 150
+    title: Donation appeal one
+    duration: "04:00"
+    talent: Avery Quill
+    camera_notes: Cam 2 single on host with lower-third totals; Cam 1 wide with donation graphic full.
+  - item: 160
+    title: Youth orchestra showcase
+    duration: "10:00"
+    talent: Meridian Youth Orchestra
+    camera_notes: Cam 5 jib arcs over orchestra; Cam 3 tights on soloists; conductor cam on Cam 6 preset 4.
+  - item: 170
+    title: Auction segment with live totals
+    duration: "08:00"
+    talent: Avery Quill
+    camera_notes: Cam 2 and Cam 4 alternate on auctioneer; keep Cam 1 clean for graphics key.
+  - item: 180
+    title: Headliner set two - Mara Velasco with guests
+    duration: "20:00"
+    talent: Mara Velasco
+    camera_notes: All cams live; Cam 4 roams stage left for guest entrances; Cam 5 high wide for finale pyro safe shot.
+  - item: 190
+    title: Donation appeal two / matching gift reveal
+    duration: "05:00"
+    talent: Avery Quill
+    camera_notes: Cam 2 single on host; Cam 6 preset 2 on totals board.
+  - item: 200
+    title: Finale - full company performance
+    duration: "08:00"
+    talent: Full company
+    camera_notes: Cam 1 master; Cam 5 jib develop to high wide; confetti drop on final note, protect lenses downstage.
+  - item: 210
+    title: Thank-yous and credits roll
+    duration: "04:00"
+    talent: Avery Quill
+    camera_notes: Cam 5 slow house pullback under credits; Cam 4 grabs candid crowd shots.
