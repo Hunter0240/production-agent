@@ -21,6 +21,7 @@ export const config = {
   maxMessageChars: intEnv("MAX_MESSAGE_CHARS", 2000),
 
   sessionMessageLimit: intEnv("SESSION_MESSAGE_LIMIT", 10),
+  ipDailyLimit: intEnv("IP_DAILY_LIMIT", 20),
   dailyRequestLimit: intEnv("DAILY_REQUEST_LIMIT", 300),
   dailyOutputTokenLimit: intEnv("DAILY_OUTPUT_TOKEN_LIMIT", 200000),
 };

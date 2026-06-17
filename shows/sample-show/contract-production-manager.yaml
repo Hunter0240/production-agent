@@ -12,7 +12,7 @@ dates:
   prep: 2026-08-19
   show: 2026-08-22
 terms:
-  - Payment net 30 from invoice receipt.
-  - Owns crew booking, call sheets, and distribution.
-  - Cancellation: full week if cancelled inside 7 days.
+  - "Payment net 30 from invoice receipt."
+  - "Owns crew booking, call sheets, and distribution."
+  - "Cancellation: full week if cancelled inside 7 days."
 status: Countersigned

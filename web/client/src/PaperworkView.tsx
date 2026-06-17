@@ -18,6 +18,18 @@ function fmtDate(value: unknown): string {
   return value == null ? "" : String(value);
 }
 
+// A YAML list item like `- Cancellation: ...` parses as a map, not a string.
+// Render any shape as readable text so a single line never crashes the view.
+function termText(t: unknown): string {
+  if (typeof t === "string") return t;
+  if (t && typeof t === "object") {
+    return Object.entries(t as Record<string, unknown>)
+      .map(([k, v]) => `${k}: ${v}`)
+      .join(", ");
+  }
+  return String(t);
+}
+
 // Time-of-day clock for each segment: `start` (HH:MM) plus the cumulative
 // MM:SS durations of the preceding segments. Mirrors get_rundown server-side.
 function frontTimes(start: string, segments: { duration?: string }[]): string[] {
@@ -115,7 +127,7 @@ interface ContractData {
   department?: string;
   agreement?: Record<string, YamlScalar>;
   dates?: Record<string, YamlScalar>;
-  terms?: string[];
+  terms?: unknown[];
   status?: string;
 }
 
@@ -337,7 +349,7 @@ function Budget({ d }: { d: BudgetData }) {
 function Contract({ d }: { d: ContractData }) {
   const agreement = d.agreement ?? {};
   const dates = d.dates ?? {};
-  const terms: string[] = d.terms ?? [];
+  const terms = d.terms ?? [];
   return (
     <div className="pw">
       <div className="pw-head"><h3>Engagement Agreement</h3><span>{d.status ?? "personal"}</span></div>
@@ -364,7 +376,7 @@ function Contract({ d }: { d: ContractData }) {
         <div className="pw-section">
           <h4>Conditions</h4>
           {terms.map((t, i) => (
-            <p key={i} className="pw-line pw-dim">- {t}</p>
+            <p key={i} className="pw-line pw-dim">- {termText(t)}</p>
           ))}
         </div>
       )}

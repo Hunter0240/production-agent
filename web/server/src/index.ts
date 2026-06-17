@@ -42,8 +42,8 @@ app.get("/api/docs", async (req, res) => {
   if (!ROLES.includes(role)) return res.status(400).json({ error: "unknown role" });
   try {
     res.json(JSON.parse(await callTool("list_documents", {}, role)));
-  } catch (err) {
-    res.status(502).json({ error: err instanceof Error ? err.message : "tool failure" });
+  } catch {
+    res.status(502).json({ error: "document service unavailable" });
   }
 });
 
@@ -54,8 +54,8 @@ app.get("/api/doc", async (req, res) => {
   if (!name || name.length > 200) return res.status(400).json({ error: "bad document name" });
   try {
     res.json(JSON.parse(await callTool("get_document", { doc_name: name }, role)));
-  } catch (err) {
-    res.status(502).json({ error: err instanceof Error ? err.message : "tool failure" });
+  } catch {
+    res.status(502).json({ error: "document service unavailable" });
   }
 });
 
@@ -63,8 +63,21 @@ function sessionId(req: express.Request, res: express.Response): string {
   const existing = req.headers.cookie?.match(/pagent_session=([a-f0-9]{32})/)?.[1];
   if (existing) return existing;
   const id = crypto.randomBytes(16).toString("hex");
-  res.setHeader("Set-Cookie", `pagent_session=${id}; Path=/; HttpOnly; SameSite=Lax; Max-Age=86400`);
+  const secure = req.secure ? "; Secure" : "";
+  res.setHeader(
+    "Set-Cookie",
+    `pagent_session=${id}; Path=/; HttpOnly; SameSite=Lax; Max-Age=86400${secure}`,
+  );
   return id;
+}
+
+// The rate-limit key: the client IP. On Cloud Run the real client is the first
+// X-Forwarded-For entry; fall back to the socket address locally. Spoofing only
+// helps an attacker rotate keys, and the global daily budget is the hard backstop.
+function clientIp(req: express.Request): string {
+  const xff = req.headers["x-forwarded-for"];
+  const first = (Array.isArray(xff) ? xff[0] : xff)?.split(",")[0].trim();
+  return first || req.ip || "unknown";
 }
 
 interface ChatBody {
@@ -94,9 +107,10 @@ app.post("/api/chat", async (req, res) => {
   }
 
   const sid = sessionId(req, res);
-  const gate = checkChatAllowed(sid);
+  const ip = clientIp(req);
+  const gate = checkChatAllowed(sid, ip);
   if (!gate.ok) return res.status(429).json({ error: gate.reason });
-  consume(sid);
+  consume(sid, ip);
 
   res.setHeader("Content-Type", "text/event-stream");
   res.setHeader("Cache-Control", "no-cache");
@@ -114,8 +128,8 @@ app.post("/api/chat", async (req, res) => {
   try {
     const outputTokens = await runAgentTurn(history, role, send);
     recordUsage(outputTokens);
-  } catch (err) {
-    send({ type: "error", message: err instanceof Error ? err.message : "agent failure" });
+  } catch {
+    send({ type: "error", message: "Something went wrong handling that. Try again." });
   }
   res.end();
 });

@@ -34,4 +34,19 @@ describe("guardrails", () => {
     for (let i = 0; i < config.dailyRequestLimit; i++) consume(`f${i}`.padEnd(32, "0"));
     expect(checkChatAllowed("g".repeat(32)).ok).toBe(false);
   });
+
+  it("blocks one IP that rotates sessions past the per-IP daily limit", () => {
+    const ip = "203.0.113.7";
+    // distinct sessions each time, so the session cap never fires -- only the IP does
+    for (let i = 0; i < config.ipDailyLimit; i++) consume(`s${i}`.padEnd(32, "0"), ip);
+    const gate = checkChatAllowed("fresh".padEnd(32, "0"), ip);
+    expect(gate.ok).toBe(false);
+    if (!gate.ok) expect(gate.reason).toContain("address");
+  });
+
+  it("does not block a different IP when one IP is exhausted", () => {
+    const ip = "203.0.113.7";
+    for (let i = 0; i < config.ipDailyLimit; i++) consume(`s${i}`.padEnd(32, "0"), ip);
+    expect(checkChatAllowed("z".repeat(32), "198.51.100.2").ok).toBe(true);
+  });
 });
